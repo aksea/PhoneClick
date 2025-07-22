@@ -1,0 +1,104 @@
+# PhoneClick 项目配置文件
+
+# 数据配置
+data:
+  # 采样率 (Hz)
+  sample_rate: 100
+  # 窗口大小 (样本数)
+  window_size: 90
+  # 重叠率
+  overlap_ratio: 0.5
+  # 数据列名映射
+  columns:
+    accelerometer:
+      - ax
+      - ay
+      - az
+    gyroscope:
+      - gx
+      - gy
+      - gz
+    orientation:
+      - roll
+      - pitch
+      - yaw
+    label: label
+
+# 模型配置
+model:
+  # 模型类型: tsai, custom
+  type: tsai
+  # tsai模型名称 (当type为tsai时使用)
+  model_name: inceptiontime
+  # 输入特征数
+  input_features: 9
+  # 输出类别数
+  num_classes: 4
+  # 序列长度
+  seq_len: 90
+  # 隐藏层大小
+  hidden_size: 128
+  # 学习率
+  learning_rate: 0.001
+  # 批次大小
+  batch_size: 32
+  # 训练轮数
+  epochs: 100
+
+# tsai模型配置
+tsai_models:
+  # 推荐的模型列表
+  recommended:
+    - inceptiontime
+    - resnet
+    - fcn
+    - lstm
+    - tst
+    - mini_rocket
+  # 模型特定配置
+  inceptiontime:
+    description: "InceptionTime - 基于Inception架构的时间序列分类模型"
+    best_for: "长序列时间序列分类"
+  resnet:
+    description: "ResNet - 残差网络用于时间序列分类"
+    best_for: "一般时间序列分类任务"
+  fcn:
+    description: "FCN - 全卷积网络用于时间序列分类"
+    best_for: "快速原型和基线模型"
+  lstm:
+    description: "LSTM - 长短期记忆网络"
+    best_for: "有长期依赖的时间序列"
+  tst:
+    description: "TST - 时间序列Transformer"
+    best_for: "复杂时间序列模式识别"
+  mini_rocket:
+    description: "MiniRocket - 轻量级Rocket模型"
+    best_for: "快速部署和资源受限环境"
+
+# 训练配置
+training:
+  # 训练集比例
+  train_ratio: 0.7
+  # 验证集比例
+  val_ratio: 0.2
+  # 测试集比例
+  test_ratio: 0.1
+  # 随机种子
+  random_seed: 42
+  # 早停耐心值
+  early_stopping_patience: 10
+  # 学习率调度器
+  scheduler:
+    type: "cosine" # cosine, step, exponential
+    step_size: 30
+    gamma: 0.1
+
+# 部署配置
+deployment:
+  ios:
+    # 模型格式: coreml, onnx
+    model_format: coreml
+    # 量化配置
+    quantization: true
+    # 优化级别
+    optimization_level: "high"
