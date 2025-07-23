@@ -1,0 +1,34 @@
+# IMU Machine Learning Project Dependencies
+# Python 3.11
+
+# Core ML and Deep Learning
+torch>=2.5.0
+torchvision>=0.20.0
+tsai>=0.4.0
+scikit-learn>=1.6.0
+
+# Data Processing
+pandas>=2.3.0
+numpy>=2.2.0
+scipy>=1.16.0
+
+# Visualization
+matplotlib>=3.10.0
+seaborn>=0.13.0
+
+# GUI and Interaction
+PyQt5>=5.15.0
+pynput>=1.8.0
+
+# Configuration
+pyyaml>=6.0.0
+
+# iOS Deployment
+coremltools>=8.3.0
+onnx>=1.18.0
+onnxruntime>=1.22.0
+
+# Development and Testing
+pytest>=8.4.0
+black>=25.1.0
+flake8>=7.3.0 
